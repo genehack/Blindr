@@ -1,0 +1,18 @@
+{
+  "autoPin": true,
+  "pins": [
+    {
+      "package": "Just",
+      "reason": null,
+      "repositoryURL": "https://github.com/JustHTTP/Just.git",
+      "version": "0.5.7"
+    },
+    {
+      "package": "SwiftCLI",
+      "reason": null,
+      "repositoryURL": "https://github.com/jakeheis/SwiftCLI",
+      "version": "3.0.0"
+    }
+  ],
+  "version": 1
+}
