@@ -2,9 +2,6 @@ import Foundation
 import Just
 import SwiftCLI
 
-func getHubIp () -> String {
-    // TODO FIXME make this use mDNS or something...
-    return "192.168.1.122"
 extension String {
     func matchingStrings(regex: String) -> [String] {
         guard let regex = try? NSRegularExpression(pattern: regex, options: NSRegularExpression.Options.caseInsensitive) else { return [] }
@@ -39,6 +36,14 @@ func runShellProcess (cmd: String, arguments: [String]) -> String? {
     }
 }
 
+func getHubIp () -> String {
+    if let smbInfo = runShellProcess(cmd: "/usr/bin/smbutil", arguments: ["lookup", "PDBU-Hub3.0"]) {
+        if let hubIp = smbInfo.matchingStrings(regex: "from ([\\d\\.]+)").first {
+            return hubIp
+        }
+    }
+
+    fatalError("Couldn't fetch hub IP address - is the hub okay? ")
 }
 
 func sendGetReq (_ frag: String) -> HTTPResult {
