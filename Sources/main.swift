@@ -20,6 +20,25 @@ extension String {
     }
 }
 
+func runShellProcess (cmd: String, arguments: [String]) -> String? {
+    let pipe = Pipe()
+    let task = Process()
+
+    task.launchPath     = cmd
+    task.arguments      = arguments
+    task.standardOutput = pipe
+
+    task.launch()
+
+    let data = pipe.fileHandleForReading.readDataToEndOfFile()
+    if let output = String(data: data, encoding: .utf8) {
+        return output
+    }
+    else {
+        fatalError("Couldn't run '\(cmd)'")
+    }
+}
+
 }
 
 func sendGetReq (_ frag: String) -> HTTPResult {
