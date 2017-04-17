@@ -5,6 +5,21 @@ import SwiftCLI
 func getHubIp () -> String {
     // TODO FIXME make this use mDNS or something...
     return "192.168.1.122"
+extension String {
+    func matchingStrings(regex: String) -> [String] {
+        guard let regex = try? NSRegularExpression(pattern: regex, options: NSRegularExpression.Options.caseInsensitive) else { return [] }
+        let nsString = self as NSString
+        let matches  = regex.matches(in: self, options: [], range: NSMakeRange(0, nsString.length))
+        var results  = [String]()
+        for ranges in matches {
+            for rangeIdx in 1 ..< ranges.numberOfRanges {
+                results.append(nsString.substring(with: ranges.rangeAt(rangeIdx)))
+            }
+        }
+        return results
+    }
+}
+
 }
 
 func sendGetReq (_ frag: String) -> HTTPResult {
