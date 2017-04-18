@@ -101,7 +101,7 @@ class RunSceneCommand: Command {
         // If the array is empty, this will do nothing
         getScenesList().forEach {
             if $0.decodedValue == sceneName.value {
-                _ = sendGetReq("api/scenes?sceneid=" + scene.id)
+                _ = sendGetReq("api/scenes?sceneid=" + $0.id)
             }
         }
         
@@ -111,7 +111,7 @@ class RunSceneCommand: Command {
         //        scene.decodedValue == sceneName.value
         //    }
         //    .forEach {
-        //        _ = sendGetReq("api/scenes?sceneid=" + scene.id)
+        //        _ = sendGetReq("api/scenes?sceneid=" + $0.id)
         //    }
         
     }
@@ -126,7 +126,7 @@ class ScenesCommand: Command {
     // This also means we can make listOfScenes immutable
     func execute() throws {
         let listOfScenes = getScenesList().map {
-            return $0.decodedValue
+            $0.decodedValue
         }
         
         // [wg] Inverted the if-statement to take advantage of the array's isEmpty property, which is
