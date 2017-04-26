@@ -27,7 +27,7 @@ class Hub {
 
         guard
           let json      = res.json as? [String: AnyObject],
-          let sceneData = json?["sceneData"] as? [SceneData]
+          let sceneData = json["sceneData"] as? [SceneData]
 
         else {
             return [] // Parsing failed, somehow, so returning empty
