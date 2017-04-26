@@ -4,6 +4,7 @@ import SwiftCLI
 class RunSceneCommand: Command {
     let name = "run_scene"
     let shortDescription = "Activate a scene by name"
+
     let sceneName = Parameter()
 
     func execute() throws {
@@ -24,9 +25,7 @@ class ScenesCommand: Command {
         else {
             print("SCENES")
             print("------")
-            listOfScenes.forEach {
-                print($0)
-            }
+            scenes.forEach { print($0) }
         }
     }
 }
