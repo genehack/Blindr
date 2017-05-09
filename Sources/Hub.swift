@@ -5,16 +5,16 @@ class Hub {
 
     let ip: String
 
-    // FIXME would i be better off with this as a `init?()` ? 
+    // FIXME would i be better off with this as a `init?()` ?
     init () {
         guard
           // FIXME seems like i need a broadcast ping here to wake the fucking thing up...
-          
+
           let smbInfo = runShellProcess(cmd: "/usr/bin/smbutil",
                                         arguments: ["lookup", "PDBU-Hub3.0"]),
           let hubIp = smbInfo.getCapturedStrings(regex: "from ([\\d\\.]+)").first
         else {
-            // FIXME gotta be a better way of dealing with this - return a nil? throw an exception? 
+            // FIXME gotta be a better way of dealing with this - return a nil? throw an exception?
             fatalError("Couldn't fetch hub IP address - is the hub okay? ")
         }
 
@@ -49,7 +49,7 @@ class Hub {
                 // return value here, make sure it's not an error or
                 // something...
                 _ = self.sendGetReq("api/scenes?sceneid=" + $0.id)
-                return // we're done, get out 
+                return // we're done, get out
             }
         }
     }
@@ -61,7 +61,7 @@ class Hub {
         if ( !res.ok ) {
             print("Whoops, an error occured!")
             print("Reason: " + res.reason)
-            // FIXME throw a fucking exception or something, punk 
+            // FIXME throw a fucking exception or something, punk
             fatalError("DEAD")
         }
         else {
@@ -108,7 +108,7 @@ fileprivate func runShellProcess (cmd: String, arguments: [String]) -> String? {
         return output
     }
     else {
-        // FIXME this should throw an exception 
+        // FIXME this should throw an exception
         fatalError("Couldn't run '\(cmd)'")
     }
 }
