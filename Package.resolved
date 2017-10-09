@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Just",
+        "repositoryURL": "https://github.com/JustHTTP/Just.git",
+        "state": {
+          "branch": null,
+          "revision": "0d2f4a7665ce84e20d55ffe3631108e9a98fe3fc",
+          "version": "0.5.7"
+        }
+      },
+      {
+        "package": "SwiftCLI",
+        "repositoryURL": "https://github.com/jakeheis/SwiftCLI",
+        "state": {
+          "branch": null,
+          "revision": "36bb5dd52deed7264b6f41c1a2190d376cb9f17c",
+          "version": "3.0.3"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
